@@ -30,7 +30,6 @@ class TiketController extends Controller
 
     public function saveData(Request $request){
         // Retrieve data tiket
-        $data = [];
         $tiket = new Tiket;
         $tiket->kode_tiket = $request->get('kodeTiket');
         $tiket->nama_lengkap = $request->get('namaLengkap');
@@ -40,18 +39,14 @@ class TiketController extends Controller
 
         // Generate file receipt.pdf
         $pdf = PDF::loadView('mail.tiket', ['tiket' => $tiket]);
+        //ukuran kertas 25cmx10cm
+        $pdf->setPaper([0, 0, 283.46, 708.66], 'landscape');
+        $pdf->output(['isRemoteEnabled' => true]);
+        return $pdf->stream('receipt.pdf');
 
         // Kirim email
-        Mail::to($tiket->email)
-            ->send(new MailTiket($tiket, $pdf->download()));
-        // $data['email'] = $tiket->email;
-        // $data['pdf'] = $pdf;
-        // Mail::send('mail.tiket', ['data' => $data], function($message) use ($data)
-        // {
-        //     $message->to($data['email'], 'Jon Doe')->subject('Welcome!');
-        //     $message->attachData($data['pdf'], 'invoice.pdf');
-        // });
-        return "Oke";
-        // return $pdf->stream();
+        // Mail::to($tiket->email)
+        //     ->send(new MailTiket($tiket, $pdf->download()));
+        // return "Oke";
     }
 }
