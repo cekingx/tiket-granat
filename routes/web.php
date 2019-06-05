@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/data-diri', 'TiketController@inputData');
 Route::post('/data-diri', 'TiketController@showData')->name('data-diri');
 Route::post('/save-data', 'TiketController@saveData')->name('save-data');
+Route::get('/public-path', function () {
+    return asset('granat.');
+});

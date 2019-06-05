@@ -47,7 +47,7 @@
     <tr>
       <td class="white" align="center" style="width: 15%; height: 260pt">
         {{-- Gambar menggunakan Google Cloud CDN --}}
-        <img src="http://35.244.219.12/granat.png" alt="Granat" >
+        <img src="D:/Coding/APP/LARAVEL/tiket-granat/public/asset/granat.png" alt="Granat" >
       </td>
       <td class="white" align="left" style="width: 35%">
         <p>Nama: <strong>{{$tiket->nama_lengkap}}</strong></p>
