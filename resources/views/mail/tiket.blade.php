@@ -46,7 +46,6 @@
   <table width="100%" class="page-break">
     <tr>
       <td class="white" align="center" style="width: 15%; height: 260pt">
-        {{-- Gambar menggunakan Google Cloud CDN --}}
         <img src="D:/Coding/APP/LARAVEL/tiket-granat/public/asset/granat.png" alt="Granat" >
       </td>
       <td class="white" align="left" style="width: 35%">
