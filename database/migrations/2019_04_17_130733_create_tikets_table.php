@@ -19,6 +19,7 @@ class CreateTiketsTable extends Migration
             $table->string('nama_lengkap', 50);
             $table->string('instansi', 50);
             $table->string('email', 50);
+            $table->integer('gate');
             $table->timestamps();
         });
     }

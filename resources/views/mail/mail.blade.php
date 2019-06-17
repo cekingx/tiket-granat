@@ -6,18 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
-  <label for="kodeTiket">Kode Tiket</label>
-  <div id="kodeTiket">
-    {{$tiket->kode_tiket}}
-  </div>
+  
+  Dear {{$tiket->nama_lengkap}}, ini adalah e-tiket kamu dengan nomor {{$tiket->kode_tiket}}
+  Jaga kerahasiaan tiket ini karena panitia tidak bertanggung jawab atas modifikasi tiket oleh
+  pihak yang tidak bertanggung jawab.
 
-  <label for="namaLengkap">Nama</label>
-  <div>{{$tiket->nama_lengkap}}</div>
-  </br>
-
-  <label for="instansi">Instansi</label>
-  <div>{{$tiket->instansi}}</div>
-   
+  See you on September 21, 2019 at Sunrise Beach
   <script src="{{url('js/app.js')}}"></script>
 </body>
 </html>

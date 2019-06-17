@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 use App\Tiket;
-use App\Mail\MailTiket;
 use PDF;
 
-class TiketController extends Controller
+class PanitiaController extends Controller
 {
     public function inputData(){
-        return view('tiket.input-data');
+        return view('tiket.input-panitia');
     }
 
     public function showData(Request $request){
+        $tiket = new Tiket;
+        $tiket->nama_lengkap = $request->get('namaLengkap');
+        $tiket->instansi = $request->get('instansi');
+        $tiket->email = $request->get('email');
+
+        return view('tiket.show-panitia', ['tiket' => $tiket]);
+    }
+
+    public function saveData(Request $request){
+        // Retrieve data tiket
         $no_tiket = (11111 + Tiket::all()->last()->id);
         $kode_tiket = 'GRN' . (string)$no_tiket;
 
@@ -25,25 +32,13 @@ class TiketController extends Controller
         } else {
             $gate = 1;
         }
-        
+
         $tiket = new Tiket;
         $tiket->kode_tiket = $kode_tiket;
         $tiket->nama_lengkap = $request->get('namaLengkap');
         $tiket->instansi = $request->get('instansi');
         $tiket->email = $request->get('email');
         $tiket->gate = $gate;
-
-        return view('tiket.show-data', ['tiket' => $tiket]);
-    }
-
-    public function saveData(Request $request){
-        // Retrieve data tiket
-        $tiket = new Tiket;
-        $tiket->kode_tiket = $request->get('kodeTiket');
-        $tiket->nama_lengkap = $request->get('namaLengkap');
-        $tiket->instansi = $request->get('instansi');
-        $tiket->email = $request->get('email');
-        $tiket->gate = $request->get('gate');
         $tiket->save();
 
         // Generate file receipt.pdf
@@ -51,11 +46,6 @@ class TiketController extends Controller
         //ukuran kertas 25cmx10cm
         $pdf->setPaper([0, 0, 283.46, 708.66], 'landscape');
         $pdf->output(['isRemoteEnabled' => true]);
-        // return $pdf->stream('receipt.pdf');
-
-        // Kirim email
-        Mail::to($tiket->email)
-            ->send(new MailTiket($tiket, $pdf->download()));
-        return "Oke";
+        return $pdf->download($kode_tiket . '_' . $tiket->nama_lengkap . '.pdf');
     }
 }
