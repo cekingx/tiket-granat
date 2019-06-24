@@ -52,7 +52,7 @@
         <p>Nama: <strong>{{ $tiket->nama_lengkap }}</strong></p>
         <p>Email: <strong>{{ $tiket->email }}</strong></p>
         <p>Instansi: <strong>{{ $tiket->instansi }}</strong></p>
-        <p>Type: <strong>Presale 1</strong></p>
+        <p>Type: <strong>Presale 1 dan 2</strong></p>
         <br/><br/>
         <pre>
           {!! DNS1D::getBarcodeHTML($tiket->kode_tiket, "C39", 2, 40) !!}
@@ -67,7 +67,6 @@
         </pre>
       </td>
       <td class="black" style="width: 20%">
-        space sponsor
       </td>
     </tr>
   </table>
