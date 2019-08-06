@@ -48,8 +48,9 @@ class TiketController extends Controller
 
         // Generate file receipt.pdf
         $pdf = PDF::loadView('mail.tiket', ['tiket' => $tiket]);
-        //ukuran kertas 25cmx10cm
-        $pdf->setPaper([0, 0, 283.46, 708.66], 'landscape');
+        //ukuran kertas 20cmx10cm
+        // covert dari cm ke point computer
+        $pdf->setPaper([0, 0, 283.46, 566.92], 'landscape');
         $pdf->output(['isRemoteEnabled' => true]);
         // return $pdf->stream('receipt.pdf');
 
