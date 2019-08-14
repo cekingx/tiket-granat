@@ -29,6 +29,10 @@ Route::get('/backup', 'BackUpController@inputData');
 Route::post('/backup', 'BackUpController@showData')->name('data-backup');
 Route::post('/print-data', 'BackUpController@printData')->name('print-data');
 
+// Test Database
+Route::get('/test-database', 'TestDatabaseController@inputName');
+Route::post('/test-database', 'TestDatabaseController@saveName')->name('test-database');
+
 
 Route::get('/public-path', function () {
     return asset('granat.');
